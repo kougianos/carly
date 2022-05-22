@@ -1,0 +1,9 @@
+TODO:
+
+cars collection in mongo
+car model DTO and collection
+ROLE_USER can add cars
+
+transactions collection
+	buyer, seller, car, timestamp, isConfirmed
+
