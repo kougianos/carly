@@ -1,13 +1,11 @@
 package com.carly.security;
 
-import com.carly.model.ErrorDTO;
+import com.carly.model.dto.ErrorDTO;
 import com.carly.security.service.UserDetailsServiceImpl;
 import com.carly.util.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,19 +1,16 @@
 package com.carly.model.dto;
 
-import com.carly.model.Role;
-import lombok.Getter;
+import com.carly.model.collection.Role;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class UserDTO {
-
     private String id;
     @NotNull
     @NotEmpty
@@ -24,5 +21,5 @@ public class UserDTO {
     private String telephone;
     private boolean isVerified;
     private Set<Role> roles;
-
+    private Set<String> ownedCars;
 }

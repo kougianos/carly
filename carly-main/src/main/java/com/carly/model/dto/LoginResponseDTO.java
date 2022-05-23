@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class LoginResponseDTO {
-
     private String id;
     private String token;
     private String type;
@@ -21,5 +20,4 @@ public class LoginResponseDTO {
     private String telephone;
     private boolean isVerified;
     private List<String> roles;
-
 }

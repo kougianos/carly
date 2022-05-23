@@ -1,4 +1,4 @@
-package com.carly.model;
+package com.carly.model.collection;
 
 import com.carly.enumeration.ERole;
 import lombok.Data;

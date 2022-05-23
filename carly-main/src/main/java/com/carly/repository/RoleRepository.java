@@ -1,7 +1,7 @@
 package com.carly.repository;
 
 import com.carly.enumeration.ERole;
-import com.carly.model.Role;
+import com.carly.model.collection.Role;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

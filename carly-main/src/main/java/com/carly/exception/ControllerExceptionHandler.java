@@ -1,8 +1,6 @@
 package com.carly.exception;
 
-import com.carly.model.ErrorDTO;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.MalformedJwtException;
+import com.carly.model.dto.ErrorDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,15 +37,6 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorDTO> handle(BadCredentialsException ex) {
-        ErrorDTO errorDTO = new ErrorDTO(
-                LocalDateTime.now(ZoneId.of(EUROPE_ATHENS_TZ)),
-                ex.getMessage());
-        log.error(ex.getMessage(), ex);
-        return new ResponseEntity<>(errorDTO, HttpStatus.UNAUTHORIZED);
-    }
-
-    @ExceptionHandler(JwtValidationException.class)
-    public ResponseEntity<ErrorDTO> handle(JwtValidationException ex) {
         ErrorDTO errorDTO = new ErrorDTO(
                 LocalDateTime.now(ZoneId.of(EUROPE_ATHENS_TZ)),
                 ex.getMessage());

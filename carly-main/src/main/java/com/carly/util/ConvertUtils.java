@@ -1,5 +1,7 @@
 package com.carly.util;
 
+import com.carly.model.collection.Car;
+import com.carly.model.dto.CarDTO;
 import com.carly.model.dto.UserDTO;
 import com.carly.model.collection.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -40,9 +42,13 @@ public class ConvertUtils {
         userDto.setTelephone(user.getTelephone());
         userDto.setRoles(user.getRoles());
         userDto.setVerified(user.isUserVerified());
+        userDto.setOwnedCars(user.getOwnedCars());
         return userDto;
     }
 
+    /**
+     * Exclude id from conversion.
+     */
     public static User toUser(UserDTO userDTO) {
         User user = new User();
         user.setUsername(userDTO.getUsername());
@@ -52,7 +58,30 @@ public class ConvertUtils {
         user.setTelephone(userDTO.getTelephone());
         user.setUserVerified(userDTO.isVerified());
         user.setRoles(userDTO.getRoles());
+        user.setOwnedCars(userDTO.getOwnedCars());
         return user;
+    }
+
+    public static CarDTO toCarDTO(Car car) {
+        CarDTO carDTO = new CarDTO();
+        carDTO.setId(car.getId());
+        carDTO.setMileage(car.getMileage());
+        carDTO.setModel(car.getModel());
+        carDTO.setYear(car.getYear());
+        carDTO.setOwnerId(car.getOwnerId());
+        return carDTO;
+    }
+
+    /**
+     * Exclude id from conversion.
+     */
+    public static Car toCar(CarDTO carDTO) {
+        Car car = new Car();
+        car.setMileage(carDTO.getMileage());
+        car.setModel(carDTO.getModel());
+        car.setYear(carDTO.getYear());
+        car.setOwnerId(carDTO.getOwnerId());
+        return car;
     }
 
 }

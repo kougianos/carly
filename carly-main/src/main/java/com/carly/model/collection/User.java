@@ -1,6 +1,5 @@
 package com.carly.model.collection;
 
-import com.carly.model.Role;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,27 +19,22 @@ import java.util.Set;
 public class User {
     @Id
     private String id;
-
     @NotBlank
     @Size(max = 20)
     private String username;
-
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
-
     @NotBlank
     @Size(max = 120)
     private String password;
     private String firstName;
     private String lastName;
     private String telephone;
-    private Set<Role> roles = new HashSet<>();
-    @NotBlank
-    private Set<Api> apis = new HashSet<>();
-
+    private Set<Role> roles;
     private boolean isUserVerified;
+    private Set<String> ownedCars;
 
     public User(String username, String email, String password, String firstName, String lastName, String telephone) {
         this.username = username;

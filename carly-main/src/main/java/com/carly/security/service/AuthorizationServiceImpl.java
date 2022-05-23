@@ -3,7 +3,7 @@ package com.carly.security.service;
 import com.carly.enumeration.ERole;
 import com.carly.exception.ResourceExistsException;
 import com.carly.exception.ResourceNotFoundException;
-import com.carly.model.Role;
+import com.carly.model.collection.Role;
 import com.carly.model.collection.User;
 import com.carly.model.dto.LoginRequestDTO;
 import com.carly.model.dto.LoginResponseDTO;
