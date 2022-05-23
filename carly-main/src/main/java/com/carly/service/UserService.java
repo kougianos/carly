@@ -1,4 +1,4 @@
-package com.carly.service.user;
+package com.carly.service;
 
 import com.carly.exception.ResourceNotFoundException;
 import com.carly.model.collection.User;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserService implements CrudService<UserDTO> {
 
     @Autowired
     UserRepository userRepository;
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO patchUserById(String id, UserDTO userDTO) {
+    public UserDTO patchById(String id, UserDTO userDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("User %s not found", id)));
 
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO deleteUserById(String id) {
+    public UserDTO deleteById(String id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("User %s not found", id)));
 

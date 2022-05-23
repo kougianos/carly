@@ -4,7 +4,7 @@ package com.carly.controller;
 import com.carly.model.dto.RegisterRequestDTO;
 import com.carly.model.dto.UserDTO;
 import com.carly.security.service.AuthorizationService;
-import com.carly.service.user.UserService;
+import com.carly.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,11 +20,11 @@ import java.util.List;
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
-    private final UserService userService;
+    private final CrudService<UserDTO> userService;
     private final AuthorizationService authorizationService;
 
     @Autowired
-    public AdminController(UserService userService, AuthorizationService authorizationService) {
+    public AdminController(CrudService<UserDTO> userService, AuthorizationService authorizationService) {
         this.userService = userService;
         this.authorizationService = authorizationService;
     }
@@ -47,12 +47,12 @@ public class AdminController {
 
     @PatchMapping("/users/{userId}")
     public UserDTO patchUser(@PathVariable String userId, @Valid @RequestBody UserDTO userDTO) {
-        return userService.patchUserById(userId, userDTO);
+        return userService.patchById(userId, userDTO);
     }
 
     @DeleteMapping("/users/{userId}")
     public UserDTO deleteUser(@PathVariable String userId) {
-        return userService.deleteUserById(userId);
+        return userService.deleteById(userId);
     }
 
 }
