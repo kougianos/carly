@@ -32,7 +32,7 @@ public class ConvertUtils {
         return new YAMLMapper().writeValueAsString(jsonNodeTree);
     }
 
-    public static UserDTO toUserDto(User user) {
+    public static UserDTO toUserDTO(User user) {
         UserDTO userDto = new UserDTO();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());

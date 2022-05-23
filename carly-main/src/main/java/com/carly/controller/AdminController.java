@@ -4,7 +4,7 @@ package com.carly.controller;
 import com.carly.model.dto.RegisterRequestDTO;
 import com.carly.model.dto.UserDTO;
 import com.carly.security.service.AuthorizationService;
-import com.carly.service.CrudService;
+import com.carly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,11 +20,11 @@ import java.util.List;
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
-    private final CrudService<UserDTO> userService;
+    private final UserService userService;
     private final AuthorizationService authorizationService;
 
     @Autowired
-    public AdminController(CrudService<UserDTO> userService, AuthorizationService authorizationService) {
+    public AdminController(UserService userService, AuthorizationService authorizationService) {
         this.userService = userService;
         this.authorizationService = authorizationService;
     }

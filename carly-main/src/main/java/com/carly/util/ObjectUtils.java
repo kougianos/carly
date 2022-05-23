@@ -33,10 +33,10 @@ public class ObjectUtils {
                 String toName = fromName.replace("get", "set");
 
                 try {
-                    Method toMetod = obj.getClass().getMethod(toName, fromMethod.getReturnType());
+                    Method method = obj.getClass().getMethod(toName, fromMethod.getReturnType());
                     Object value = fromMethod.invoke(update, (Object[]) null);
                     if (value != null) {
-                        toMetod.invoke(obj, value);
+                        method.invoke(obj, value);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

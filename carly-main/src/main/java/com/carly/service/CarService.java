@@ -1,27 +1,14 @@
 package com.carly.service;
 
 import com.carly.model.dto.CarDTO;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
-public class CarService implements CrudService<CarDTO> {
-	@Override
-	public CarDTO findById(String id) {
-		return null;
-	}
+public interface CarService {
+	void createCar(Authentication authentication, CarDTO carDTO);
 
-	@Override
-	public List<CarDTO> findAll() {
-		return null;
-	}
+	CarDTO deleteCar(Authentication authentication, String carId);
 
-	@Override
-	public CarDTO patchById(String id, CarDTO resource) {
-		return null;
-	}
-
-	@Override
-	public CarDTO deleteById(String id) {
-		return null;
-	}
+	List<CarDTO> getAllCars(Authentication authentication);
 }
