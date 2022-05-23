@@ -1,8 +1,11 @@
 TODO:
 
 cars collection in mongo
+	model, year, mileage, owner
 car model DTO and collection
-ROLE_USER can add cars
+userDTO and userCollection has Set of owned car ids 
+ROLE_USER or ROLE_ADMIN can add cars through carController
+ROLE_USER can post transactions through transactionController
 
 transactions collection
 	buyer, seller, car, timestamp, isConfirmed
