@@ -7,6 +7,8 @@ import com.carly.model.collection.User;
 import com.carly.model.dto.TransactionDTO;
 import com.carly.repository.TransactionRepository;
 import com.carly.util.ConvertUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +23,21 @@ public class TransactionServiceImpl implements TransactionService {
 	private final TransactionRepository transactionRepository;
 	private final UserService userService;
 	private final CarService carService;
+	private final KafkaService kafkaService;
+	@Autowired
+	private ObjectMapper mapper;
 
 	@Autowired
 	public TransactionServiceImpl(TransactionRepository transactionRepository,
-								  UserService userService, CarService carService) {
+								  UserService userService, CarService carService, KafkaService kafkaService) {
 		this.transactionRepository = transactionRepository;
 		this.userService = userService;
 		this.carService = carService;
+		this.kafkaService = kafkaService;
 	}
 
 	@Override
+	@SneakyThrows
 	public void createTransaction(TransactionDTO transactionDTO) {
 		validateTransaction(transactionDTO);
 		Transaction transaction = ConvertUtils.toTransaction(transactionDTO);
@@ -38,6 +45,9 @@ public class TransactionServiceImpl implements TransactionService {
 		transaction.setCreatedAt(LocalDateTime.now());
 		String transactionId = transactionRepository.save(transaction).getId();
 		log.info("Transaction {} created: {} ", transactionId, transaction);
+
+		transactionDTO.setId(transactionId);
+		kafkaService.send(transactionId, mapper.writeValueAsString(transactionDTO));
 	}
 
 	@Override

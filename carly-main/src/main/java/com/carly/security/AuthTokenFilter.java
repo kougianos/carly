@@ -4,8 +4,6 @@ import com.carly.model.dto.ErrorDTO;
 import com.carly.security.service.UserDetailsServiceImpl;
 import com.carly.util.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,51 +22,51 @@ import java.time.LocalDateTime;
 
 
 public class AuthTokenFilter extends OncePerRequestFilter {
-    @Autowired
-    private JwtUtils jwtUtils;
+	@Autowired
+	private JwtUtils jwtUtils;
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+	@Autowired
+	private ObjectMapper mapper;
 
-        try {
-            String jwt = parseJwt(request);
-            if (jwt != null) {
-                jwtUtils.validateJwtToken(jwt);
-                String username = jwtUtils.getUserNameFromJwtToken(jwt);
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
 
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+		try {
+			String jwt = parseJwt(request);
+			if (jwt != null) {
+				jwtUtils.validateJwtToken(jwt);
+				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
+				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+						userDetails, null, userDetails.getAuthorities());
+				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-            filterChain.doFilter(request, response);
-        } catch (RuntimeException e) {
-            ErrorDTO errorDTO = new ErrorDTO(LocalDateTime.now(), e.getMessage());
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write(new ObjectMapper()
-                    .registerModules(new JavaTimeModule())
-                    .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-                    .writeValueAsString(errorDTO));
-            logger.error("", e);
-        }
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+			}
 
-    }
+			filterChain.doFilter(request, response);
+		} catch (RuntimeException e) {
+			ErrorDTO errorDTO = new ErrorDTO(LocalDateTime.now(), e.getMessage());
+			response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			response.getWriter().write(mapper.writeValueAsString(errorDTO));
+			logger.error("", e);
+		}
 
-    private String parseJwt(HttpServletRequest request) {
-        String headerAuth = request.getHeader("Authorization");
+	}
 
-        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-            return headerAuth.substring(7);
-        }
+	private String parseJwt(HttpServletRequest request) {
+		String headerAuth = request.getHeader("Authorization");
 
-        return null;
-    }
+		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+			return headerAuth.substring(7);
+		}
+
+		return null;
+	}
 }
