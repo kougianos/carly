@@ -20,5 +20,5 @@ public class Transaction {
 	private String carId;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-	private boolean isConfirmed;
+	private Boolean isSuccessful;
 }

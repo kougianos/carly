@@ -33,6 +33,6 @@ public class TransactionDTO {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime updatedAt;
-	private boolean isConfirmed;
+	private Boolean isSuccessful;
 
 }

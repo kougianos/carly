@@ -41,12 +41,12 @@ public class TransactionServiceImpl implements TransactionService {
 	public void createTransaction(TransactionDTO transactionDTO) {
 		validateTransaction(transactionDTO);
 		Transaction transaction = ConvertUtils.toTransaction(transactionDTO);
-		transaction.setConfirmed(false);
 		transaction.setCreatedAt(LocalDateTime.now());
 		String transactionId = transactionRepository.save(transaction).getId();
 		log.info("Transaction {} created: {} ", transactionId, transaction);
 
 		transactionDTO.setId(transactionId);
+		transactionDTO.setIsSuccessful(null);
 		kafkaService.send(transactionId, mapper.writeValueAsString(transactionDTO));
 	}
 
