@@ -43,8 +43,7 @@ public class CarServiceImpl implements CarService {
 	public CarDTO deleteCar(Authentication auth, String carId) {
 		String userId = ((UserDetailsImpl) auth.getPrincipal()).getId();
 		userService.getUser(userId);
-		Car car = carRepository.findById(carId)
-				.orElseThrow(() -> new ResourceNotFoundException(String.format("Car %s not found", carId)));
+		Car car = getCar(carId);
 		carRepository.deleteById(car.getId());
 		log.info("Car deleted: {}", car);
 		userService.removeCar(userId, car.getId());
@@ -60,5 +59,11 @@ public class CarServiceImpl implements CarService {
 		return cars.stream()
 				.map(ConvertUtils::toCarDTO)
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Car getCar(String carId) {
+		return carRepository.findById(carId)
+				.orElseThrow(() -> new ResourceNotFoundException(String.format("Car %s not found", carId)));
 	}
 }

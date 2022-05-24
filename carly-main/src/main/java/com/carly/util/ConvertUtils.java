@@ -1,7 +1,9 @@
 package com.carly.util;
 
 import com.carly.model.collection.Car;
+import com.carly.model.collection.Transaction;
 import com.carly.model.dto.CarDTO;
+import com.carly.model.dto.TransactionDTO;
 import com.carly.model.dto.UserDTO;
 import com.carly.model.collection.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -82,6 +84,14 @@ public class ConvertUtils {
         car.setYear(carDTO.getYear());
         car.setOwnerId(carDTO.getOwnerId());
         return car;
+    }
+
+    public static Transaction toTransaction(TransactionDTO transactionDTO) {
+        Transaction transaction = new Transaction();
+        transaction.setSellerId(transactionDTO.getSellerId());
+        transaction.setBuyerId(transactionDTO.getBuyerId());
+        transaction.setCarId(transactionDTO.getCarId());
+        return transaction;
     }
 
 }

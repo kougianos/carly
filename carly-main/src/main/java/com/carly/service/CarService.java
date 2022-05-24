@@ -1,5 +1,6 @@
 package com.carly.service;
 
+import com.carly.model.collection.Car;
 import com.carly.model.dto.CarDTO;
 import org.springframework.security.core.Authentication;
 
@@ -11,4 +12,6 @@ public interface CarService {
 	CarDTO deleteCar(Authentication authentication, String carId);
 
 	List<CarDTO> getAllCars(Authentication authentication);
+
+	Car getCar(String carId);
 }
