@@ -22,51 +22,51 @@ import java.time.LocalDateTime;
 
 
 public class AuthTokenFilter extends OncePerRequestFilter {
-	@Autowired
-	private JwtUtils jwtUtils;
+    @Autowired
+    private JwtUtils jwtUtils;
 
-	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
-	@Autowired
-	private ObjectMapper mapper;
+    @Autowired
+    private ObjectMapper mapper;
 
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
 
-		try {
-			String jwt = parseJwt(request);
-			if (jwt != null) {
-				jwtUtils.validateJwtToken(jwt);
-				String username = jwtUtils.getUserNameFromJwtToken(jwt);
+        try {
+            String jwt = parseJwt(request);
+            if (jwt != null) {
+                jwtUtils.validateJwtToken(jwt);
+                String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
-				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-						userDetails, null, userDetails.getAuthorities());
-				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-			}
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
 
-			filterChain.doFilter(request, response);
-		} catch (RuntimeException e) {
-			ErrorDTO errorDTO = new ErrorDTO(LocalDateTime.now(), e.getMessage());
-			response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-			response.getWriter().write(mapper.writeValueAsString(errorDTO));
-			logger.error("", e);
-		}
+            filterChain.doFilter(request, response);
+        } catch (RuntimeException e) {
+            ErrorDTO errorDTO = new ErrorDTO(LocalDateTime.now(), e.getMessage());
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write(mapper.writeValueAsString(errorDTO));
+            logger.error("", e);
+        }
 
-	}
+    }
 
-	private String parseJwt(HttpServletRequest request) {
-		String headerAuth = request.getHeader("Authorization");
+    private String parseJwt(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
 
-		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-			return headerAuth.substring(7);
-		}
+        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+            return headerAuth.substring(7);
+        }
 
-		return null;
-	}
+        return null;
+    }
 }

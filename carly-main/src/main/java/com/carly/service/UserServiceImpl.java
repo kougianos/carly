@@ -57,6 +57,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addCar(String userId, String carId) {
         User user = getUser(userId);
+        if (user.getOwnedCars().contains(carId)) {
+            throw new IllegalArgumentException(String.format("User %s already has car %s", userId, carId));
+        }
         user.addCar(carId);
         userRepository.save(user);
         log.info("Car {} added to user {}", carId, userId);
@@ -65,6 +68,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeCar(String userId, String carId) {
         User user = getUser(userId);
+        if (!user.getOwnedCars().contains(carId)) {
+            throw new IllegalArgumentException(String.format("User %s does not have car %s", userId, carId));
+        }
         user.removeCar(carId);
         userRepository.save(user);
         log.info("Car {} removed from user {}", carId, userId);

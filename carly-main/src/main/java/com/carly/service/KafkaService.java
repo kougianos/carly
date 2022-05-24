@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaService {
 
-	private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
-	@Value("${cloudkarafka.topic}")
-	private String topic;
+    @Value("${cloudkarafka.topic}")
+    private String topic;
 
-	@Autowired
-	KafkaService(KafkaTemplate<String, String> kafkaTemplate) {
-		this.kafkaTemplate = kafkaTemplate;
-	}
+    @Autowired
+    KafkaService(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
-	public void send(String key, String message) {
-		log.info("Sending kafka message with key {} value {}", key, message);
-		this.kafkaTemplate.send(topic, key, message);
-	}
+    public void send(String key, String message) {
+        log.info("Sending kafka message with key {} value {}", key, message);
+        this.kafkaTemplate.send(topic, key, message);
+    }
 }

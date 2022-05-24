@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 @ToString(exclude = {"id"})
 @Document(collection = "transactions")
 public class Transaction {
-	@Id
-	private String id;
-	private String buyerId;
-	private String sellerId;
-	private String carId;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
-	private Boolean isSuccessful;
+    @Id
+    private String id;
+    private String buyerId;
+    private String sellerId;
+    private String carId;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private Boolean isSuccessful;
 }

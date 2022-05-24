@@ -1,6 +1,5 @@
 package com.carly.controller;
 
-import com.carly.model.dto.CarDTO;
 import com.carly.model.dto.TransactionDTO;
 import com.carly.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +18,17 @@ import javax.validation.Valid;
 @PreAuthorize("hasRole('USER')")
 public class TransactionController {
 
-	private final TransactionService transactionService;
+    private final TransactionService transactionService;
 
-	@Autowired
-	public TransactionController(TransactionService transactionService) {
-		this.transactionService = transactionService;
-	}
+    @Autowired
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
-	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping()
-	public void createTransaction(@Valid @RequestBody TransactionDTO transactionDTO) {
-		transactionService.createTransaction(transactionDTO);
-	}
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
+    public void createTransaction(@Valid @RequestBody TransactionDTO transactionDTO) {
+        transactionService.createTransaction(transactionDTO);
+    }
 
 }

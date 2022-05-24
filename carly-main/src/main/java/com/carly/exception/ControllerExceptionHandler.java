@@ -44,8 +44,8 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(errorDTO, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(InvalidTransactionException.class)
-    public ResponseEntity<ErrorDTO> handle(InvalidTransactionException ex) {
+    @ExceptionHandler({InvalidTransactionException.class, IllegalArgumentException.class})
+    public ResponseEntity<ErrorDTO> handle(RuntimeException ex) {
         ErrorDTO errorDTO = new ErrorDTO(
                 LocalDateTime.now(ZoneId.of(EUROPE_ATHENS_TZ)),
                 ex.getMessage());

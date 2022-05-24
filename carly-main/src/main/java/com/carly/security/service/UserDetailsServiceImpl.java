@@ -1,8 +1,8 @@
 package com.carly.security.service;
 
 import com.carly.model.collection.User;
-import com.carly.security.UserDetailsImpl;
 import com.carly.repository.UserRepository;
+import com.carly.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

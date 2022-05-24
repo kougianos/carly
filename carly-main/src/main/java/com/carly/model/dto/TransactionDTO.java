@@ -13,26 +13,26 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class TransactionDTO {
-	private String id;
-	@NotNull
-	@NotBlank
-	private String buyerId;
-	@NotNull
-	@NotBlank
-	private String sellerId;
-	@NotNull
-	@NotBlank
-	private String carId;
+    private String id;
+    @NotNull
+    @NotBlank
+    private String buyerId;
+    @NotNull
+    @NotBlank
+    private String sellerId;
+    @NotNull
+    @NotBlank
+    private String carId;
 
-	private UserDTO buyer;
-	private UserDTO seller;
-	private CarDTO car;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	private LocalDateTime createdAt;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	private LocalDateTime updatedAt;
-	private Boolean isSuccessful;
+    private UserDTO buyer;
+    private UserDTO seller;
+    private CarDTO car;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime updatedAt;
+    private Boolean isSuccessful;
 
 }

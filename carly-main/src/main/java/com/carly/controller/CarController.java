@@ -24,27 +24,27 @@ import java.util.List;
 @PreAuthorize("hasRole('USER')")
 public class CarController {
 
-	private final CarService carService;
+    private final CarService carService;
 
-	@Autowired
-	public CarController(CarServiceImpl carService, AuthorizationService authorizationService) {
-		this.carService = carService;
-	}
+    @Autowired
+    public CarController(CarServiceImpl carService, AuthorizationService authorizationService) {
+        this.carService = carService;
+    }
 
-	@GetMapping()
-	public List<CarDTO> getAllCars(Authentication auth) {
-		return carService.getAllCars(auth);
-	}
+    @GetMapping()
+    public List<CarDTO> getAllCars(Authentication auth) {
+        return carService.getAllCars(auth);
+    }
 
-	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping()
-	public void createCar(Authentication auth, @RequestBody CarDTO carDTO) {
-		carService.createCar(auth, carDTO);
-	}
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
+    public void createCar(Authentication auth, @RequestBody CarDTO carDTO) {
+        carService.createCar(auth, carDTO);
+    }
 
-	@DeleteMapping("/{carId}")
-	public CarDTO deleteCar(Authentication auth, @PathVariable String carId) {
-		return carService.deleteCar(auth, carId);
-	}
+    @DeleteMapping("/{carId}")
+    public CarDTO deleteCar(Authentication auth, @PathVariable String carId) {
+        return carService.deleteCar(auth, carId);
+    }
 
 }

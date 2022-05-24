@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TransactionRepository extends MongoRepository<Transaction, String> {
 
-	List<Transaction> findByBuyerId(String buyerId);
+    List<Transaction> findByBuyerId(String buyerId);
 }
