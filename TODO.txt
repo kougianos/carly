@@ -1,7 +1,0 @@
-TODO:
-
-ROLE_USER can post transactions through transactionController
-
-transactions collection
-	buyer, seller, carId, timestamp, isConfirmed
-
