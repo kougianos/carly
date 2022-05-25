@@ -53,7 +53,7 @@ public class AdminController {
     }
 
     @PatchMapping("/users/{userId}")
-    public UserDTO patchUser(@PathVariable String userId, @Valid @RequestBody UserDTO userDTO) {
+    public UserDTO patchUser(@PathVariable String userId, @RequestBody UserDTO userDTO) {
         return userService.patchById(userId, userDTO);
     }
 
