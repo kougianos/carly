@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addCar(String userId, String carId) {
         User user = getUser(userId);
-        if (user.getOwnedCars().contains(carId)) {
+        if (user.getOwnedCars() != null && user.getOwnedCars().contains(carId)) {
             throw new IllegalArgumentException(String.format("User %s already has car %s", userId, carId));
         }
         user.addCar(carId);
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeCar(String userId, String carId) {
         User user = getUser(userId);
-        if (!user.getOwnedCars().contains(carId)) {
+        if (user.getOwnedCars() != null && !user.getOwnedCars().contains(carId)) {
             throw new IllegalArgumentException(String.format("User %s does not have car %s", userId, carId));
         }
         user.removeCar(carId);
