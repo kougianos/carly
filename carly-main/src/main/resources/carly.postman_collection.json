@@ -1,0 +1,504 @@
+{
+	"info": {
+		"_postman_id": "6c57a602-95f4-4355-ba57-c1464dafe002",
+		"name": "carly",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15550713"
+	},
+	"item": [
+		{
+			"name": "Test hello",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/test/collections",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"test",
+						"collections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"kougianos\",\r\n\t\"firstname\": \"Nikos\",\r\n\t\"lastname\": \"Kougianos\",\r\n\t\"email\": \"kougianos@hotmail.com\",\r\n\t\"roles\": [\"user\"],\r\n\t\"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"kougi\",\r\n\t\"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin getAllUsers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzY2MTAyNCwiZXhwIjoxNjUzNzQ3NDI0fQ.1DzVhzx3qRBMPxPIZ0g453s2LgQe2C2hAAMNUCvyt3Qw94BDw2b2vKQvyDCeFo0OF6zbO4f8b-eepfg_F_hj2A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/admin/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin createUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzM4NjEzMCwiZXhwIjoxNjUzNDcyNTMwfQ.-TMm_VazFylBq_8oxk-qzhU_DouQSK0lb_9xER3ENXSusv-VIfIBswMsjpMPri3axg09nxivPQxcLe4xyBs4xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"aaaaaa\",\r\n\t\"firstname\": \"Nikos\",\r\n\t\"lastname\": \"Kougianos\",\r\n\t\"email\": \"aa@hotmail.com\",\r\n\t\"roles\": [\"admin\"],\r\n\t\"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/admin/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin getUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzM4NjEzMCwiZXhwIjoxNjUzNDcyNTMwfQ.-TMm_VazFylBq_8oxk-qzhU_DouQSK0lb_9xER3ENXSusv-VIfIBswMsjpMPri3axg09nxivPQxcLe4xyBs4xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/admin/users/628a089df076de281e78bf0d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"users",
+						"628a089df076de281e78bf0d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin updateUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzM4NjEzMCwiZXhwIjoxNjUzNDcyNTMwfQ.-TMm_VazFylBq_8oxk-qzhU_DouQSK0lb_9xER3ENXSusv-VIfIBswMsjpMPri3axg09nxivPQxcLe4xyBs4xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"OOOOO\",\r\n    \"lastName\": \"XXXXXX\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/admin/users/628deb160ca4bf6a2fb8d0de",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"users",
+						"628deb160ca4bf6a2fb8d0de"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin deleteUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzM4NjEzMCwiZXhwIjoxNjUzNDcyNTMwfQ.-TMm_VazFylBq_8oxk-qzhU_DouQSK0lb_9xER3ENXSusv-VIfIBswMsjpMPri3axg09nxivPQxcLe4xyBs4xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/admin/users/628deb160ca4bf6a2fb8d0de",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"users",
+						"628deb160ca4bf6a2fb8d0de"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User getAllCars",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzM4NjEzMCwiZXhwIjoxNjUzNDcyNTMwfQ.-TMm_VazFylBq_8oxk-qzhU_DouQSK0lb_9xER3ENXSusv-VIfIBswMsjpMPri3axg09nxivPQxcLe4xyBs4xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"Tesla\",\r\n    \"year\": \"2015\",\r\n    \"mileage\": \"145.000km\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/cars",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User createCar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzY2MTg2OCwiZXhwIjoxNjUzNzQ4MjY4fQ._hdgfSuCQt8FO_V-vsNicZU3VbAxe5mAKorG_MSI4uHRPYp6VT552RECwrUBglPnN-sruf26IRsCuzIJtZnrAQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"BUGGATI\",\r\n    \"year\": \"2015\",\r\n    \"mileage\": \"145.000km\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/cars",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User deleteCar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzM4NjEzMCwiZXhwIjoxNjUzNDcyNTMwfQ.-TMm_VazFylBq_8oxk-qzhU_DouQSK0lb_9xER3ENXSusv-VIfIBswMsjpMPri3axg09nxivPQxcLe4xyBs4xg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"Tesla\",\r\n    \"year\": \"2015\",\r\n    \"mileage\": \"145.000km\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/cars/628debf3614eb037f6bc63c9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cars",
+						"628debf3614eb037f6bc63c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User createTransaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTY1MzY1MzE0OCwiZXhwIjoxNjUzNzM5NTQ4fQ.5rFlDqQP79lQ_hk3lM_gwppFL0M6TipfiOj9BEmwaU2wm1fB2ws3epjgFxPr6sLFWe2YU41QO_QRrnLiHXZAGg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrb3VnaSIsImlhdCI6MTYzNjczMjAzNywiZXhwIjoxNjM2ODE4NDM3fQ.K-GCF2qQjOCH3PKPlTyuk0UktPF5uYNUwap8FkvXuSYQaqNpC1TqIkLE0eED3Wrs7KdBUWfT_a3LEz42soNMxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"buyerId\": \"6290dcad15b1f032d3dc3728\",\r\n    \"sellerId\": \"6290db5715b1f032d3dc3727\",\r\n    \"carId\": \"6290e18277c7a538a855d5f8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Public finalizeTransaction",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"628cae1eeead5b5886a0d0f9\",\r\n    \"isSuccessful\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/public/transactions/finalize",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"public",
+						"transactions",
+						"finalize"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
